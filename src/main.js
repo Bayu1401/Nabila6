@@ -18,8 +18,9 @@ class LINE extends LineAPI {
         this.stateStatus = {
             cancel: 0,
             kick: 0,
-            qr: 0,
+            Lockqr: 0,
             protect: 0,
+            Kill: 0,
         }
     }
 
@@ -61,13 +62,13 @@ class LINE extends LineAPI {
       
         if(operation.type == 17 && this.stateStatus.kill == 1) { //ada join
             if(!isAdminOrBot(operation.param2)) {
- .              this._kickMember(operation.param1,[operation.param2]);
+               this._kickMember(operation.param1,[operation.param2]);
             }
 	
         }
 	    
 	if(operation.type == 13 && this.stateStatus.protect == 1) { //ada yang invite
- .          if(!isAdminOrBot(operation.param2)) {
+           if(!isAdminOrBot(operation.param2)) {
 	         this._kickMember(operation.param1,[operation.param2]);
 	    }
 	
@@ -110,7 +111,7 @@ class LINE extends LineAPI {
       //    let seq = new Message();
       //    seq.to = operation.param1;
       //    seq.text = "Yach..,kabur"
-       /       this._client.sendMessage(0, seq);
+       //      this._client.sendMessage(0, seq);
       // }
       
       //  if(operation.type == 19){
@@ -198,7 +199,7 @@ class LINE extends LineAPI {
             const action = actions.toLowerCase();
             const state = status.toLowerCase() == 'on' ? 1 : 0;
             this.stateStatus[action] = state;
-            this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
+            this._sendMessage(seq,`sᴛᴀᴛᴜs: \n${JSON.stringify(this.stateStatus)}`);
         } else {
            // this._sendMessage(seq,`Anda bukan Admin\nDaftar kan dulu ke...\nhttp://line.me/ti/p/~aries_jabrik`);
         }
@@ -288,7 +289,7 @@ class LINE extends LineAPI {
         var tahunku = date.getYear();
         var tahun = (tahunku < 1000) ? tahunku + 1900 : tahunku;
       
-        if(group.preventJoinByTicket==false&& this.stateStatus.protect == 1 && isAdminOrBot(seq.from)){     
+        if(group.preventJoinByTicket==false&& this.stateStatus.lock == 1 && isAdminOrBot(seq.from)){     
           //  this._sendMessage(seq,'Jgn buka QR...,\nntar dikick lho...!!');
             group.preventJoinByTicket=true;
             await this._updateGroup(group);
@@ -305,10 +306,10 @@ class LINE extends LineAPI {
           let b = group.creator.displayName;
           let c = group.id;
           let d = group.members.length;
-          this._sendMessage(seq, `🔛GROUP_NAME 👉 ${a}\n\n🔛GROUP_CREATOR\n👉 ${b} 👌\n\n🔛GROUP_ID\n👉 ${c}\n\n🔛GROUP_MEMBER\n👉${d} Ekor(👍)`)
+          this._sendMessage(seq, ``)
         }
       
-        if(txt == 'bot creator') {
+        if(txt == 'creator') {
         	seq.contentType=13;
             seq.contentMetadata = { mid: '' };
             this._client.sendMessage(1, seq);
@@ -325,9 +326,9 @@ class LINE extends LineAPI {
             this._client.sendMessage(1,seq); 
         }
 	   
-        if(txt == 'admin1') {
+        if(txt == 'admin') {
         	seq.contentType=13;
-            seq.contentMetadata = { mid: 'u17ce7606c05a31e55cfccb35487cfbf3' };
+            seq.contentMetadata = { mid: 'uccea3b6c0299b898b563ad3d3aa7df04' };
             this._client.sendMessage(1, seq);
         }
       
@@ -337,7 +338,7 @@ class LINE extends LineAPI {
             this._client.sendMessage(1, seq);
         }
       
-        if(cmd == 'cancel') {
+        if(cmd == 'reject') {
             if(payload == 'group') {
                 let groupid = await this._getGroupsInvited();
                 for (let i = 0; i < groupid.length; i++) {
@@ -358,12 +359,12 @@ class LINE extends LineAPI {
             this._sendMessage(seq, `${hariIni}, ${tanggal} ${bulan} ${tahun}`);
             }
       
-        if(txt == 'respon') {
-            this._sendMessage(seq, '😎😎😎');
+        if(txt == 'on') {
+            this._sendMessage(seq, 'ready boss kuh !!');
            }
       
          if(txt == 'help') {
-	          this._sendMessage(seq, '==============================\n αll cσmmαnd\n==============================\n☞ Myid\n☞ me\n☞ Respon all\n☞ Help/Keyword/Key/Bantuan\n☞ Creator \n☞ Admin /Admin 2\n\nG info\nG creatot\n☞ Speed\n☞ Read\n☞ Cctv/Sider/Intip/Looser\n   (Lihat Pembacaan Read)\n☞ Clear\n\n==============================\n α∂мιи ¢σммαи∂\n==============================\n☞ (name bot)Respon\n☞ Open\n☞ Close\n☞ (Nama Bot) Bye\n☞ (Nama Bot) spam\n☞ Absen/taq all\n☞ Kick On/Off\n☞ Cancel On/Off\n☞ Nk「@」\n☞ Kickall (Kick On Terlebih Dahulu)\n\n==============================\n฿Ɏ ₮Ɇ₳₥ ฿Ø₮\n==============================');
+	          this._sendMessage(seq, '     ༺益-cфмaпd lιѕт-益༻\n\n✧me\n✧jam\n✧date\n✧help\n✧stest\n✧sarver\n✧cctv\n✧ciluba\n✧tagall\n✧clear\n✧myid\n✧open\n✧close\n✧spam\n✧usir @\n✧gift\n✧join(link)\n✧cancel on|off\n✧kick on|off\n✧protect on|on\n✧bedebah\n✧creator\n✧G info\n✧G creator\n✧admin\n✧reject\n\nSpecial thank`s to\n\n♔〘 Alfha Dirk 〙♔ \n\nCreate By\n\n   ゴースト『❶』\n\nhttp://line.me/ti/p/GFfHuTXfFp');
            }
       
         if(txt == 'speed') {

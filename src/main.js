@@ -306,7 +306,7 @@ class LINE extends LineAPI {
           let b = group.creator.displayName;
           let c = group.id;
           let d = group.members.length;
-          this._sendMessage(seq, ` ♔〘 ɢʀᴏᴜᴘ ɴᴀᴍᴇ 〙♔\n\n『${a}』\n\♔〘 nɢʀᴏᴜᴘ ᴄʀᴇᴀᴛᴏʀ 〙♔\n\n『 ${b} 』\n\n\n♔〘 ɢʀᴏᴜᴘ ɪᴅ 〙♔\n\n『${c}』\n\n♔〘 ɢʀᴏᴜᴘ ᴍᴇᴍʙᴇʀ 〙♔\n\n『${d} 』ᴍᴇᴍʙᴇʀ`)
+          this._sendMessage(seq, ` ♔〘 ɢʀᴏᴜᴘ ɴᴀᴍᴇ 〙♔\n\n『${a}』\n\n♔〘 nɢʀᴏᴜᴘ ᴄʀᴇᴀᴛᴏʀ 〙♔\n\n『 ${b} 』\n\n\n♔〘 ɢʀᴏᴜᴘ ɪᴅ 〙♔\n\n『${c}』\n\n♔〘 ɢʀᴏᴜᴘ ᴍᴇᴍʙᴇʀ 〙♔\n\n『${d}』ᴍᴇᴍʙᴇʀ`)
         }
       
         if(txt == 'creator') {

@@ -313,7 +313,18 @@ class LINE extends LineAPI {
             seq.contentMetadata = { mid: '' };
             this._client.sendMessage(1, seq);
         }
-      
+	
+	if(txt == 'respons' && isAdminOrBot(seq.from)) {
+            let { mid,displayName} = await this._client.getProfile();
+             this._sendMessage(seq,' '+displayName);
+        }
+	    
+        if(txt == 'aku' && isAdminOrBot(seq.from)) {
+            seq.contentType=13;      
+            seq.contentMetadata = {mid: seq.from};
+            this._client.sendMessage(1,seq); 
+        }
+	   
         if(txt == 'admin1') {
         	seq.contentType=13;
             seq.contentMetadata = { mid: 'u17ce7606c05a31e55cfccb35487cfbf3' };
@@ -391,7 +402,8 @@ class LINE extends LineAPI {
       
         if(txt == 'clear') {
             this.checkReader = []
-            this._sendMessage(seq, `Mengulang sider...`);        }  
+            this._sendMessage(seq, `Mengulang sider...`);     
+	}  
 
         if(txt == 'ciluba' && isAdminOrBot(seq.from)){
             await this._sendMessage(seq, `ᴅᴀғᴛᴀʀ ᴄᴄᴛᴠ\n${group.name}\n👇👇👇👇👇👇👇`);
@@ -415,7 +427,7 @@ class LINE extends LineAPI {
         }
 	
         if(txt == 'myid') {
-            this._sendMessage(seq,`Your ID: ${seq.from}`);
+            this._sendMessage(seq,`${seq.from}`);
         }
 
         if(txt == 'speedtest' && isAdminOrBot(seq.from)) {

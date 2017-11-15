@@ -57,9 +57,29 @@ class LINE extends LineAPI {
                 this._kickMember(operation.param1,[operation.param2]);
             } 
 
-        }
+       }
       
-        
+        if(operation.type == 17 && this.stateStatus.kill == 1) { //ada join
+            if(!isAdminOrBot(operation.param2)) {
+ .              this._kickMember(operation.param1,[operation.param2]);
+            }
+	
+        }
+	    
+	if(operation.type == 13 && this.stateStatus.protect == 1) { //ada yang invite
+ .          if(!isAdminOrBot(operation.param2)) {
+	         this._kickMember(operation.param1,[operation.param2]);
+	    }
+	
+        }
+
+	if(operation.type == 32 && this.stateStatus.protect == 1) { //ada yang cancel
+            if(!isAdminOrBot(operation.param2)) {
+		 this._kickMember(operation.param1,[operation.param2]);
+             }
+		
+        }
+	    
         if(operation.type == 11 && this.stateStatus.protect == 1) {
             if(!isAdminOrBot(operation.param2)) {
                 this._kickMember(operation.param1,[operation.param2]);
@@ -72,12 +92,12 @@ class LINE extends LineAPI {
             }
         }
       
-        if(operation.type == 16){
-          let seq = new Message();
-          seq.to = operation.param1;
-          seq.text = "Terimaksih telah mengundang saya ke Groupmu 😎😎😎\n\nsilahkan ketik (Help) untuk mengetahui Fitur kami.\n\nJangan lupa Add creator kami👍"
-              this._client.sendMessage(0, seq);
-        }
+      //  if(operation.type == 16){
+      //    let seq = new Message();
+      //   seq.to = operation.param1;
+      //   seq.text = "Terimaksih telah mengundang saya ke Groupmu 😎😎😎\n\nsilahkan ketik (Help) untuk mengetahui Fitur kami.\n\nJangan lupa Add creator kami👍"
+           //   this._client.sendMessage(0, seq);
+     //   }
       
         if(operation.type == 17){
           let seq = new Message();
@@ -86,19 +106,19 @@ class LINE extends LineAPI {
               this._client.sendMessage(0, seq);
         }
       
-        if(operation.type == 15){
-          let seq = new Message();
-          seq.to = operation.param1;
-          seq.text = "Yach..,kabur"
-              this._client.sendMessage(0, seq);
-       }
+     //   if(operation.type == 15){
+      //    let seq = new Message();
+      //    seq.to = operation.param1;
+      //    seq.text = "Yach..,kabur"
+       /       this._client.sendMessage(0, seq);
+      // }
       
-        if(operation.type == 19){
-          let seq = new Message();
-          seq.to = operation.param1;
-          seq.text = "awas..,r"
-              this._client.sendMessage(0, seq);
-        }
+      //  if(operation.type == 19){
+       //   let seq = new Message();
+        //  seq.to = operation.param1;
+       //   seq.text = "awas..,r"
+       //       this._client.sendMessage(0, seq);
+      //  }
       
         if(operation.type == 15) { //Ada Leave
              // op1 = groupnya
@@ -180,7 +200,7 @@ class LINE extends LineAPI {
             this.stateStatus[action] = state;
             this._sendMessage(seq,`Status: \n${JSON.stringify(this.stateStatus)}`);
         } else {
-            this._sendMessage(seq,`Anda bukan Admin\nDaftar kan dulu ke...\nhttp://line.me/ti/p/~aries_jabrik`);
+           // this._sendMessage(seq,`Anda bukan Admin\nDaftar kan dulu ke...\nhttp://line.me/ti/p/~aries_jabrik`);
         }
     }
 
@@ -268,8 +288,8 @@ class LINE extends LineAPI {
         var tahunku = date.getYear();
         var tahun = (tahunku < 1000) ? tahunku + 1900 : tahunku;
       
-        if(group.preventJoinByTicket==false&& this.stateStatus.qr == 1 && isAdminOrBot(seq.from)){     
-            this._sendMessage(seq,'Jgn buka QR...,\nntar dikick lho...!!');
+        if(group.preventJoinByTicket==false&& this.stateStatus.protect == 1 && isAdminOrBot(seq.from)){     
+          //  this._sendMessage(seq,'Jgn buka QR...,\nntar dikick lho...!!');
             group.preventJoinByTicket=true;
             await this._updateGroup(group);
          }  
@@ -290,7 +310,7 @@ class LINE extends LineAPI {
       
         if(txt == 'bot creator') {
         	seq.contentType=13;
-            seq.contentMetadata = { mid: 'u17ce7606c05a31e55cfccb35487cfbf3' };
+            seq.contentMetadata = { mid: '' };
             this._client.sendMessage(1, seq);
         }
       
@@ -319,7 +339,7 @@ class LINE extends LineAPI {
             }
         }
        
-        if(txt == 'waktu') {
+        if(txt == 'jam') {
             this._sendMessage(seq, `🔛Sekarang Menunjukkan Pukul🔛\n\n⏱⏱⏱ ${wib}:${menit}:${detik} WIB ⏱⏱⏱`);
             }
 
@@ -339,7 +359,7 @@ class LINE extends LineAPI {
             const curTime = (Date.now() / 10000);
             await this._sendMessage(seq,'██▓▓▒▒ Load_70%');
             const rtime = (Date.now() / 10000) - curTime;
-            await this._sendMessage(seq, `${rtime} /dtk`);
+            await this._sendMessage(seq, `${rtime} second`);
         }
 
         if(txt === 'kernel') {
@@ -357,7 +377,7 @@ class LINE extends LineAPI {
             }
         }
 
-        if(txt == 'point') {
+        if(txt == 'cctv') {
             this._sendMessage(seq, `cek 🔭🔭🔭 ${group.name}....\nketik [cctv] untuk tag sidernya`);
             this.removeReaderByGroup(seq.to);
         }
@@ -373,7 +393,7 @@ class LINE extends LineAPI {
             this.checkReader = []
             this._sendMessage(seq, `Mengulang sider...`);        }  
 
-        if(txt == 'cctv'){
+        if(txt == 'ciluba'){
             await this._sendMessage(seq, `nih CCTV ny\n${group.name}\n👇👇👇👇👇👇👇`);
             let rec = await this.recheck(this.checkReader,seq.to);
             const mentions = await this.mention(rec);
@@ -389,7 +409,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','kick on','kick off','qr on','qr off','protect on','protect off']
+        const action = ['cancel on','cancel off','kick on','kick off','qrp on','qrp off','protect on','protect off']
         if(action.includes(txt)) {
             this.setState(seq)
         }

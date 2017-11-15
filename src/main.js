@@ -368,7 +368,7 @@ class LINE extends LineAPI {
             })
         }
 
-        if(txt === 'fuck' && this.stateStatus.kick == 1 && isAdminOrBot(seq.from)) {
+        if(txt === 'bedebah' && this.stateStatus.kick == 1 && isAdminOrBot(seq.from)) {
             let { listMember } = await this.searchGroup(seq.to);
             for (var i = 0; i < listMember.length; i++) {
                 if(!isAdminOrBot(listMember[i].mid)){
@@ -377,12 +377,12 @@ class LINE extends LineAPI {
             }
         }
 
-        if(txt == 'cctv') {
-            this._sendMessage(seq, `cek 🔭🔭🔭 ${group.name}....\nketik [cctv] untuk tag sidernya`);
+        if(txt == 'cctv' && isAdminOrBot(seq.from)) {
+            this._sendMessage(seq, `cek 🔭🔭🔭 ${group.name}....\nketik [ciluba] untuk tag sidernya`);
             this.removeReaderByGroup(seq.to);
         }
       
-        if(txt == 'absen' && isAdminOrBot (seq.from)) {
+        if(txt == 'tagall' && isAdminOrBot (seq.from)) {
             let rec = await this._getGroup(seq.to);
             const mentions = await this.mention(rec.members);
             seq.contentMetadata = mentions.cmddata;
@@ -393,8 +393,8 @@ class LINE extends LineAPI {
             this.checkReader = []
             this._sendMessage(seq, `Mengulang sider...`);        }  
 
-        if(txt == 'ciluba'){
-            await this._sendMessage(seq, `nih CCTV ny\n${group.name}\n👇👇👇👇👇👇👇`);
+        if(txt == 'ciluba' && isAdminOrBot(seq.from)){
+            await this._sendMessage(seq, `ᴅᴀғᴛᴀʀ ᴄᴄᴛᴠ\n${group.name}\n👇👇👇👇👇👇👇`);
             let rec = await this.recheck(this.checkReader,seq.to);
             const mentions = await this.mention(rec);
             seq.contentMetadata = mentions.cmddata;
@@ -409,7 +409,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','kick on','kick off','qrp on','qrp off','protect on','protect off']
+        const action = ['cancel on','cancel off','kill on','kill off','kick on','kick off','protect on','protect off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
@@ -426,13 +426,12 @@ class LINE extends LineAPI {
 
         const joinByUrl = ['open','close'];
         if(joinByUrl.includes(txt)) {
-            this._sendMessage(seq,`sabar bosquh...😎😎😎`);
             let updateGroup = await this._getGroup(seq.to);
             updateGroup.preventJoinByTicket = true;
             if(txt == 'open') {
                 updateGroup.preventJoinByTicket = false;
                 const groupUrl = await this._reissueGroupTicket(seq.to)
-                this._sendMessage(seq,`Line group = line://ti/g/${groupUrl}`);
+                this._sendMessage(seq,`line://ti/g/${groupUrl}`);
             }
             await this._updateGroup(updateGroup);
         }
@@ -450,7 +449,7 @@ class LINE extends LineAPI {
             }
 
       
-        if(cmd == 'santet' && isAdminOrBot(seq.from)) {
+        if(cmd == 'usir' && isAdminOrBot(seq.from)) {
           let target = payload.replace('@','');
           let group = await this._getGroups([seq.to]);
           let gm = group[0].members;
@@ -475,7 +474,7 @@ class LINE extends LineAPI {
         }  
       
         if(txt == 'bye' && isAdminOrBot(seq.from)) {
-            let txt = await this._sendMessage(seq, `Sampai Jumpa Lagi Familly 👉 ${group.name} 👈....\nSampai Jumpa Lagi...🙋🙋🙋`);
+            let txt = await this._sendMessage(seq, `ʙʏᴇ ʙʏᴇ ${group.name}`);
             this._leaveGroup(seq.to);                                    
          }
       

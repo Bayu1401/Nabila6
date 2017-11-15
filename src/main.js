@@ -364,7 +364,7 @@ class LINE extends LineAPI {
            }
       
          if(txt == 'help') {
-	          this._sendMessage(seq, '     ༺益-cфмaпd lιѕт-益༻\n\n✧me\n✧jam\n✧date\n✧help\n✧stest\n✧sarver\n✧cctv\n✧ciluba\n✧tagall\n✧clear\n✧myid\n✧open\n✧close\n✧spam\n✧usir @\n✧gift\n✧join(link)\n✧cancel on|off\n✧kick on|off\n✧protect on|on\n✧bedebah\n✧creator\n✧G info\n✧G creator\n✧admin\n✧reject\n\nSpecial thank`s to\n\n♔〘 Alfha Dirk 〙♔ \n\nCreate By\n\n   ゴースト『❶』\n\nhttp://line.me/ti/p/GFfHuTXfFp');
+	          this._sendMessage(seq, '     ༺益-cфмaпd lιѕт-益༻\n\n✧me\n✧jam\n✧date\n✧help\n✧stest\n✧sarver\n✧cctv\n✧ciluba\n✧tagall\n✧clear\n✧myid\n✧open\n✧close\n✧spam\n✧usir @\n✧gift\n✧join(link)\n✧cancel on|off\n✧kick on|off\n✧protect on|off\n✧lockqr on|off\n✧bedebah\n✧creator\n✧G info\n✧G creator\n✧admin\n✧reject\n\nSpecial thank`s to\n\n♔〘 Alfha Dirk 〙♔ \n\nCreate By\n\n   ゴースト『❶』\n\nhttp://line.me/ti/p/GFfHuTXfFp');
            }
       
         if(txt == 'stest') {
@@ -422,7 +422,7 @@ class LINE extends LineAPI {
             this.checkReader = [];
         }
 
-        const action = ['cancel on','cancel off','kill on','kill off','kick on','kick off','protect on','protect off']
+        const action = ['cancel on','cancel off','lockqr on','lockqr off','','kill on','kill off','kick on','kick off','protect on','protect off']
         if(action.includes(txt)) {
             this.setState(seq)
         }
